@@ -1,0 +1,12 @@
+{
+    "name": "mentalproject",
+    "version": "1.0.0",
+    "main": "index.js",
+    "license": "MIT",
+    "scripts": {
+        "dev": "cd dev && lite-server"
+    },
+    "dependencies": {
+        "lite-server": "^2.2.2"
+    }
+}
