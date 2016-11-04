@@ -1,4 +1,11 @@
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400,700&subset=latin-ext");
+.responsive-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%; }
+
 .navbar {
   position: absolute;
   z-index: 1000;
@@ -11,49 +18,76 @@
   -webkit-box-sizing: border-box;
      -moz-box-sizing: border-box;
           box-sizing: border-box; }
+  .navbar .logo {
+    position: relative;
+    left: 4px;
+    float: left;
+    -webkit-border-radius: 100px;
+            border-radius: 100px;
+    width: 36px;
+    height: 36px;
+    background: #718198;
+    -webkit-transform: scale(1.25);
+       -moz-transform: scale(1.25);
+        -ms-transform: scale(1.25);
+         -o-transform: scale(1.25);
+            transform: scale(1.25); }
+  .navbar .burger {
+    float: right; }
+    .navbar .burger:hover {
+      cursor: pointer; }
+  .navbar .menu {
+    float: right;
+    margin: 0; }
+    .navbar .menu li {
+      float: left;
+      margin: 0 10px;
+      -webkit-border-radius: 3px;
+              border-radius: 3px; }
+      .navbar .menu li a {
+        display: inline-block;
+        padding: 0 10px;
+        color: #718198; }
+      .navbar .menu li:first-child {
+        margin-left: 0; }
+      .navbar .menu li:last-child {
+        margin-right: 0; }
 
-.navbar__logo {
-  position: relative;
-  left: 4px;
-  float: left;
-  -webkit-border-radius: 100px;
-          border-radius: 100px;
-  width: 36px;
-  height: 36px;
-  background: #718198;
-  -webkit-transform: scale(1.25);
-     -moz-transform: scale(1.25);
-      -ms-transform: scale(1.25);
-       -o-transform: scale(1.25);
-          transform: scale(1.25); }
+.navbar_mobile {
+  z-index: 1000;
+  position: absolute;
+  top: 0;
+  right: -200px;
+  width: 200px;
+  height: 100%;
+  background: #4A586E; }
+  .navbar_mobile .menu {
+    margin-top: 10px; }
+    .navbar_mobile .menu li {
+      text-align: center; }
+      .navbar_mobile .menu li a {
+        color: white; }
 
-/* do zrobienia */
-.navbar__list {
-  padding: 0;
-  margin: 0;
-  float: right; }
+@media (min-width: 768px) {
+  .navbar .burger {
+    display: none; }
+  .navbar_mobile {
+    display: none; } }
 
-.navbar__list_item {
-  background: #718198;
-  float: left;
-  list-style: none;
-  margin: 0 10px;
-  -webkit-border-radius: 3px;
-          border-radius: 3px; }
+@media (max-width: 767px) {
+  .navbar .menu {
+    display: none; } }
 
-.navbar__list_item:first-child {
-  margin-left: 0; }
+.navbar .menu,
+.navbar_mobile .menu {
+  padding: 0; }
 
-.navbar__list_item:last-child {
-  margin-right: 0; }
+.navbar li,
+.navbar_mobile li {
+  list-style: none; }
 
-.navbar__list_item:hover {
-  background: black; }
-
-.navbar_link {
-  display: inline-block;
-  padding: 0 10px;
-  color: white;
+.navbar li a,
+.navbar_mobile li a {
   text-decoration: none;
   font-size: 18px;
   line-height: 36px; }
@@ -62,13 +96,28 @@
   display: none !important; }
 
 body {
-  font-family: 'Lato', sans-serif; }
+  position: relative;
+  right: 0;
+  font-family: 'Lato', sans-serif;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
+  -moz-transition: .5s;
+  transition: .5s;
+  overflow: visible !important; }
+
+body.moved {
+  right: 200px; }
 
 /* fullpage */
+body.moved #fullpage {
+  -webkit-filter: blur(5px);
+          filter: blur(5px); }
+
 .section {
   background-repeat: no-repeat;
-  -o-background-size: cover;
-     background-size: cover; }
+  -o-background-size: 60%;
+     background-size: 60%;
+  background-position: center; }
 
 /* intro */
 #intro h1 {
@@ -104,25 +153,6 @@ body {
 #intro a:hover {
   background: #28364C; }
 
-/* disabilities */
-.disability {
-  text-align: center; }
-
-.disability img {
-  -webkit-border-radius: 200px;
-          border-radius: 200px;
-  height: 125px;
-  width: 125px; }
-
-.disability figcaption {
-  background: #718198;
-  color: white;
-  padding: 5px;
-  -webkit-border-radius: 3px;
-          border-radius: 3px;
-  width: 150px;
-  margin: 20px auto 10px auto; }
-
 /* footer */
 footer {
   background: rgba(0, 0, 0, 0.5);
@@ -141,3 +171,14 @@ footer {
 footer.active {
   opacity: 1;
   bottom: 0; }
+
+.disability {
+  text-align: center; }
+
+.disability figcaption {
+  color: #4A586E;
+  padding: 5px;
+  -webkit-border-radius: 3px;
+          border-radius: 3px;
+  width: 150px;
+  margin: 20px auto 10px auto; }

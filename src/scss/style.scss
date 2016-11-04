@@ -5,14 +5,27 @@
 }
 
 body {
+    position: relative;
+    right: 0;
     font-family: 'Lato', sans-serif;
+    transition: .5s;
+    overflow: visible!important;
+}
+
+body.moved {
+    right: 200px;
 }
 
 /* fullpage */
 
+body.moved #fullpage {
+    filter: blur(5px);
+}
+
 .section {
     background-repeat: no-repeat;
-    background-size: cover;
+    background-size: 60%;
+    background-position: center;
 }
 
 /* intro */
@@ -46,27 +59,6 @@ body {
 
 #intro a:hover {
     background: #28364C
-}
-
-/* disabilities */
-
-.disability {
-    text-align: center;
-}
-
-.disability img {
-    border-radius: 200px;
-    height: 125px;
-    width: 125px;
-}
-
-.disability figcaption {
-    background: #718198;
-    color: white;
-    padding: 5px;
-    border-radius: 3px;
-    width: 150px;
-    margin: 20px auto 10px auto;
 }
 
 /* footer */

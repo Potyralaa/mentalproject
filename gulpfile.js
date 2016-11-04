@@ -5,26 +5,18 @@ var gulp = require('gulp'),
     rename = require('gulp-rename'),
     browserSync = require('browser-sync').create(),
     babel = require('gulp-babel'),
-    bundle = require('gulp-bundle-assets'),
-    rename = require('gulp-rename');
+    concat = require('gulp-concat');
 
 // tasks
 
-gulp.task('bundlejs', ['babel'], function () {
-    return gulp.src('./bundle.config.js')
-        .pipe(bundle())
-        .pipe(gulp.dest('./src/'));
-});
-
-gulp.task('babel', function () {
-    gulp.src("src/*.js")
-        .pipe(rename({
-            basename: "main",
-        }))
+gulp.task('js', function () {
+    gulp.src("src/js/*")
         .pipe(plumber())
+        .pipe(concat('main.js'))
         .pipe(babel({
             presets: ['es2015']
         }))
+        .on('error', console.error.bind(console))
         .pipe(gulp.dest('public/'))
         .pipe(browserSync.stream());
 });
@@ -42,7 +34,7 @@ gulp.task('html', function () {
     browserSync.reload();
 });
 
-gulp.task('browser-sync', ['sass', 'bundlejs'], function () {
+gulp.task('browser-sync', ['sass', 'js'], function () {
     browserSync.init({
         server: {
             baseDir: "./public"
@@ -50,10 +42,10 @@ gulp.task('browser-sync', ['sass', 'bundlejs'], function () {
     });
 
     gulp.watch('public/*.html', ['html']);
-    gulp.watch('src/**/*.js', ['bundlejs']);
-    gulp.watch('src/**/*.scss', ['sass']);
+    gulp.watch('src/**/*.js', ['js']);
+    gulp.watch(['src/**/*.scss', 'src/**/**/*.scss'], ['sass']);
 });
 
 // default tasks 
 
-gulp.task('default', ['bundlejs', 'babel', 'sass', 'html', 'browser-sync']);
+gulp.task('default', ['js', 'sass', 'html', 'browser-sync']);

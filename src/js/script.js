@@ -1,6 +1,7 @@
 $(document).ready(function () {
 
     const DOMElements = {
+        body: $('body'),
         nav: $('nav.navbar'),
         fullpage: $('#fullpage'),
         footer: $('footer')
@@ -11,6 +12,11 @@ $(document).ready(function () {
     setFooterDate(DOMElements);
     addEvents(DOMElements);
     DOMElements.fullpage.fullpage();
+    
+    
+    DOMElements.nav.find('.burger').click(function() {
+       DOMElements.body.toggleClass('moved');
+    });
 
 });
 
