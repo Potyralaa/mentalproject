@@ -1,12 +1,17 @@
 {
-    "name": "mentalproject",
-    "version": "1.0.0",
-    "main": "index.js",
-    "license": "MIT",
-    "scripts": {
-        "dev": "cd dev && lite-server"
-    },
-    "dependencies": {
-        "lite-server": "^2.2.2"
-    }
+  "name": "mentalproject",
+  "version": "1.0.0",
+  "main": "index.js",
+  "author": "Ithrasil <pawel186@onet.eu>",
+  "license": "MIT",
+  "dependencies": {},
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-autoprefixer": "^3.1.0",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sass": "^2.3.1",
+    "gulp-shell": "^0.5.2",
+    "browser-sync": "^2.12.5"
+  }
 }
