@@ -8,68 +8,6 @@ body {
     font-family: 'Lato', sans-serif;
 }
 
-/* navbar */
-
-.navbar {
-    position: absolute;
-    z-index: 1000;
-    width: 100%;
-    transition: .5s;
-    padding: 20px;
-    box-sizing: border-box;
-}
-
-.navbar__logo_wrapper {
-    position: relative;
-    left: 4px;
-    float: left;
-    border-radius: 100px;
-    width: 36px;
-    height: 36px;
-    background: #718198;
-    transform: scale(1.25);
-}
-
-/* do zrobienia */
-.navbar__burger {
-    
-}
-
-.navbar__list {
-    padding: 0;
-    margin: 0;
-    float: right;
-}
-
-.navbar__list_item {
-    background: #718198;
-    float: left;
-    list-style: none;
-    margin: 0 10px;
-    border-radius: 3px;
-}
-
-.navbar__list_item:first-child {
-    margin-left: 0;
-}
-
-.navbar__list_item:last-child {
-    margin-right: 0;
-}
-
-.navbar__list_item:hover {
-    background: black;
-}
-
-.navbar_link {
-    display: inline-block;
-    padding: 0 10px;
-    color: white;
-    text-decoration: none;
-    font-size: 18px;
-    line-height: 36px;
-}
-
 /* fullpage */
 
 .section {
@@ -82,23 +20,21 @@ body {
 #intro h1 {
     padding: 15px 25px;
     margin: 10px auto;
-    color: #fff;
+    color: $primary-color;
     border-radius: 5px;
-    background: #4A586E;
 }
 
 #intro h3 {
-    background: #718198;
     padding: 10px 15px;
     margin: 10px auto;
-    color: #fff;
+    color: $secondary-color;
     border-radius: 5px;
 }
 
 #intro a {
     display: inline-block;
     margin-top: 100px;
-    background: #4A586E;
+    background: $primary-color;
     border: none;
     border-radius: 3px;
     font-size: 18px;

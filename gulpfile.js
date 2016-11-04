@@ -3,46 +3,57 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     autoprefixer = require('gulp-autoprefixer'),
     rename = require('gulp-rename'),
-    browserSync = require('browser-sync').create();
+    browserSync = require('browser-sync').create(),
+    babel = require('gulp-babel'),
+    bundle = require('gulp-bundle-assets'),
+    rename = require('gulp-rename');
 
 // tasks
 
-gulp.task('scripts', function () {
-    gulp.src(['source/scripts/**/*.js', '!source/scripts/**/*.min.js'])
-        .pipe(plumber())
+gulp.task('bundlejs', ['babel'], function () {
+    return gulp.src('./bundle.config.js')
+        .pipe(bundle())
+        .pipe(gulp.dest('./src/'));
+});
+
+gulp.task('babel', function () {
+    gulp.src("src/*.js")
         .pipe(rename({
-            suffix: '.min'
+            basename: "main",
         }))
-        .pipe(gulp.dest('public/scripts'))
-        .pipe(browserSync.stream());;
+        .pipe(plumber())
+        .pipe(babel({
+            presets: ['es2015']
+        }))
+        .pipe(gulp.dest('public/'))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('sass', function () {
-    gulp.src('source/styles/*.scss')
+    gulp.src('src/main.scss')
         .pipe(plumber())
         .pipe(sass())
         .pipe(autoprefixer('last 40 versions'))
-        .pipe(gulp.dest('public/styles/'))
-        .pipe(browserSync.stream());;
+        .pipe(gulp.dest('public/'))
+        .pipe(browserSync.stream());
 });
 
 gulp.task('html', function () {
-    gulp.src('*.html')
-        .pipe(browserSync.stream());;
+    browserSync.reload();
 });
 
-gulp.task('browser-sync', ['sass', 'scripts'], function () {
+gulp.task('browser-sync', ['sass', 'bundlejs'], function () {
     browserSync.init({
         server: {
-            baseDir: "./"
+            baseDir: "./public"
         }
     });
 
-    gulp.watch('*.html', ['html']);
-    gulp.watch('source/scripts/**/*.js', ['scripts']);
-    gulp.watch('source/styles/**/*.sass', ['sass']);
+    gulp.watch('public/*.html', ['html']);
+    gulp.watch('src/**/*.js', ['bundlejs']);
+    gulp.watch('src/**/*.scss', ['sass']);
 });
 
 // default tasks 
 
-gulp.task('default', ['scripts', 'sass', 'html', 'browser-sync']);
+gulp.task('default', ['bundlejs', 'babel', 'sass', 'html', 'browser-sync']);
