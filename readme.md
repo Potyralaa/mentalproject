@@ -1,3 +1,0 @@
-# mentalproject
-
-Template projektu
