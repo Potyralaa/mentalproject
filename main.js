@@ -1,5 +1,9 @@
 'use strict';
 
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
 if (!Array.prototype.includes) {
     Array.prototype.includes = function (searchElement /*, fromIndex*/) {
         'use strict';
@@ -36,46 +40,75 @@ if (!Array.prototype.includes) {
     };
 }
 $(document).ready(function () {
-
-    var DOMElements = {
-        body: $('body'),
+    var dom = {
+        window: $(window),
         nav: $('nav.navbar'),
-        fullpage: $('#fullpage'),
-        footer: $('footer')
+        body: $('body'),
+        footer: $('footer'),
+        fullpage: $('#fullpage')
     };
 
-    console.log(DOMElements);
+    var footerChecker = new HashChecker(dom.footer, ["newsletter"], dom);
+    var mobileMenu = new MobileMenu(dom.nav, dom);
 
-    changeStatusByHash(DOMElements.footer, ["newsletter"]);
-
-    setFooterDate(DOMElements);
-    addEvents(DOMElements);
-    DOMElements.fullpage.fullpage();
-
-    DOMElements.nav.find('.burger').click(function () {
-        DOMElements.body.toggleClass('moved');
-    });
+    dom.fullpage.fullpage();
 });
 
-function addEvents(elements) {
+var MobileMenu = function () {
+    function MobileMenu(nav, dom) {
+        _classCallCheck(this, MobileMenu);
 
-    $(window).on('hashchange', function () {
-        changeStatusByHash(elements.footer, ["newsletter"]);
-    });
-}
+        this.burger = nav.find('.burger');
+        this.body = dom.body;
 
-function setFooterDate(elements) {
-    var date = new Date().getFullYear();
-    elements.footer.append(date);
-}
-
-function changeStatusByHash(element, hashes) {
-
-    var hash = location.hash.substr(1, location.hash.length - 1);
-
-    if (hashes.includes(hash)) {
-        element.addClass('active');
-    } else {
-        element.removeClass('active');
+        this.init();
     }
-}
+
+    _createClass(MobileMenu, [{
+        key: 'init',
+        value: function init() {
+            this.burger.click(this.trigger.bind(this));
+        }
+    }, {
+        key: 'trigger',
+        value: function trigger() {
+
+            this.body.toggleClass('moved');
+        }
+    }]);
+
+    return MobileMenu;
+}();
+
+var HashChecker = function () {
+    function HashChecker(element, hashes, dom) {
+        _classCallCheck(this, HashChecker);
+
+        this.element = element;
+        this.hashes = hashes;
+        this.window = dom.window;
+
+        this.init();
+    }
+
+    _createClass(HashChecker, [{
+        key: 'init',
+        value: function init() {
+            this.update();
+            this.window.on('hashchange', this.update.bind(this));
+        }
+    }, {
+        key: 'update',
+        value: function update() {
+            var hash = location.hash.substr(1, location.hash.length - 1);
+
+            if (this.hashes.includes(hash)) {
+                this.element.addClass('active');
+            } else {
+                this.element.removeClass('active');
+            }
+        }
+    }]);
+
+    return HashChecker;
+}();

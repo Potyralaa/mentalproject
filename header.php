@@ -27,7 +27,20 @@
     
 </head>
 
-<body>
+<body <?php body_class(); ?>>
+   
+    <?php
+        
+        $menu_pages = array();
+        
+        foreach(get_pages() as $page) {
+            if($page->post_parent == 0) {
+                $menu_pages[] = $page;
+            }
+        }
+        
+    ?>
+        
     
     <nav class="navbar">
         
@@ -42,7 +55,7 @@
         <div class="burger">Burger</div>
 
         <ul class="menu">
-            <?php foreach(get_pages() as $page): ?>
+            <?php foreach($menu_pages as $page): ?>
             <li>
                 <a href="#<?php echo $page->post_name; ?>"><?php echo $page->post_title; ?></a>
             </li>
@@ -53,7 +66,7 @@
     
     <div class="navbar_mobile">
         <ul class="menu">
-            <?php foreach(get_pages() as $page): ?>
+            <?php foreach($menu_pages as $page): ?>
             <li>
                 <a href="#<?php echo $page->post_name; ?>"><?php echo $page->post_title; ?></a>
             </li>
