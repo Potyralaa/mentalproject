@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 // tasks
 
 gulp.task('js', function () {
-    gulp.src("src/js/*")
+    gulp.src(["src/js/*", "src/js/*/*"])
         .pipe(plumber())
         .pipe(concat('main.js'))
         .pipe(babel({

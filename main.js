@@ -40,6 +40,7 @@ if (!Array.prototype.includes) {
     };
 }
 $(document).ready(function () {
+
     var dom = {
         window: $(window),
         nav: $('nav.navbar'),
@@ -50,35 +51,12 @@ $(document).ready(function () {
 
     var footerChecker = new HashChecker(dom.footer, ["newsletter"], dom);
     var mobileMenu = new MobileMenu(dom.nav, dom);
+    var menuSpy = new MenuSpy(dom);
 
-    dom.fullpage.fullpage();
-});
-
-var MobileMenu = function () {
-    function MobileMenu(nav, dom) {
-        _classCallCheck(this, MobileMenu);
-
-        this.burger = nav.find('.burger');
-        this.body = dom.body;
-
-        this.init();
+    if (dom.window.width() > 691) {
+        dom.fullpage.fullpage();
     }
-
-    _createClass(MobileMenu, [{
-        key: 'init',
-        value: function init() {
-            this.burger.click(this.trigger.bind(this));
-        }
-    }, {
-        key: 'trigger',
-        value: function trigger() {
-
-            this.body.toggleClass('moved');
-        }
-    }]);
-
-    return MobileMenu;
-}();
+});
 
 var HashChecker = function () {
     function HashChecker(element, hashes, dom) {
@@ -111,4 +89,61 @@ var HashChecker = function () {
     }]);
 
     return HashChecker;
+}();
+
+var MenuSpy = function () {
+    function MenuSpy(dom) {
+        _classCallCheck(this, MenuSpy);
+
+        this.window = dom.window;
+        this.nav = dom.nav;
+
+        this.init();
+    }
+
+    _createClass(MenuSpy, [{
+        key: 'init',
+        value: function init() {
+            this.window.on('hashchange', this.update.bind(this));
+        }
+    }, {
+        key: 'update',
+        value: function update() {
+            var hash = location.hash.substr(1, location.hash.length - 1);
+
+            var navElement = this.nav.find('.nav-' + hash);
+
+            this.nav.find('.menu a').removeClass('active');
+
+            navElement.addClass('active');
+        }
+    }]);
+
+    return MenuSpy;
+}();
+
+var MobileMenu = function () {
+    function MobileMenu(nav, dom) {
+        _classCallCheck(this, MobileMenu);
+
+        this.burger = nav.find('.burger');
+        this.body = dom.body;
+
+        this.init();
+    }
+
+    _createClass(MobileMenu, [{
+        key: 'init',
+        value: function init() {
+            this.burger.click(this.trigger.bind(this));
+        }
+    }, {
+        key: 'trigger',
+        value: function trigger() {
+
+            this.body.toggleClass('moved');
+        }
+    }]);
+
+    return MobileMenu;
 }();

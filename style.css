@@ -70,8 +70,15 @@ Version: 1.0
               border-radius: 3px; }
       .navbar .menu li a {
         display: inline-block;
-        padding: 0 10px;
-        color: #718198; }
+        color: #718198;
+        -webkit-transition: .5s;
+        -o-transition: .5s;
+        -moz-transition: .5s;
+        transition: .5s;
+        border-bottom: 1px solid transparent; }
+        .navbar .menu li a.active {
+          color: #4A586E;
+          border-bottom: 1px solid rgba(0, 0, 0, 0.2); }
       .navbar .menu li:first-child {
         margin-left: 0; }
       .navbar .menu li:last-child {
@@ -119,6 +126,12 @@ Version: 1.0
 #__bs_notify__ {
   display: none !important; }
 
+html {
+  height: 100%; }
+
+body {
+  min-height: 100%; }
+
 body {
   position: relative;
   right: 0;
@@ -127,17 +140,25 @@ body {
   -o-transition: .5s;
   -moz-transition: .5s;
   transition: .5s;
-  overflow: visible !important; }
+  height: 100%;
+  margin: 0;
+  overflow: scroll; }
 
 body.moved {
   right: 200px; }
 
 /* fullpage */
+#fullpage {
+  min-height: 100%;
+  height: 100%; }
+
 .section {
   background-repeat: no-repeat;
   -o-background-size: 60%;
      background-size: 60%;
-  background-position: center; }
+  background-position: center;
+  min-height: 100%;
+  height: 100%; }
 
 /* footer */
 footer {
@@ -245,10 +266,8 @@ header .button {
       -webkit-transition: .5s;
       -o-transition: .5s;
       -moz-transition: .5s;
-      transition: .5s; }
-      .disabilities .disability-pointer-wrapper .box .disability-pointer.active {
-        pointer-events: auto;
-        opacity: 1; }
+      transition: .5s;
+      max-height: 0; }
   @media (max-width: 691px) {
     .disabilities .disability-pointer-wrapper {
       display: none; } }
@@ -259,7 +278,15 @@ header .button {
   background: #4A586E;
   -webkit-border-radius: 4px;
           border-radius: 4px;
-  padding: 50px; }
+  opacity: 0;
+  pointer-events: none;
+  -webkit-transition: .5s;
+  -o-transition: .5s;
+  -moz-transition: .5s;
+  transition: .5s;
+  height: 0;
+  max-height: 0;
+  padding: 0; }
   .disabilities .disability-description .img {
     background: #718198;
     height: 100%;
@@ -269,7 +296,7 @@ header .button {
     background-position: center;
     -webkit-border-radius: 4px;
             border-radius: 4px; }
-  .disabilities .disability-description .description p {
+  .disabilities .disability-description .text {
     margin: 0 10px 20px 10px;
     color: white;
     font-weight: 300;
@@ -294,7 +321,8 @@ header .button {
     background-repeat: no-repeat;
     background-position: center;
     -o-background-size: 80%;
-       background-size: 80%; }
+       background-size: 80%;
+    margin: 0 auto; }
   .articles .article .text {
     color: #4A586E;
     font-size: 20px;

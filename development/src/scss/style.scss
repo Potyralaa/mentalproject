@@ -4,12 +4,21 @@
     display: none!important;
 }
 
+html {
+  height: 100%;
+}
+body {
+  min-height: 100%;
+}
+
 body {
     position: relative;
     right: 0;
     font-family: 'Lato', sans-serif;
     transition: .5s;
-    overflow: visible!important;
+    height: 100%;
+    margin: 0;
+    overflow:scroll;
 }
 
 body.moved {
@@ -18,10 +27,17 @@ body.moved {
 
 /* fullpage */
 
+#fullpage {
+    min-height: 100%;
+    height: 100%;
+}
+
 .section {
     background-repeat: no-repeat;
     background-size: 60%;
     background-position: center;
+    min-height: 100%;
+    height: 100%
 }
 
 /* footer */

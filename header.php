@@ -19,6 +19,8 @@
 
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/vendor/css/flexbox-grid.css';?>">
     
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/vendor/css/owl.carousel.css';?>">
+    
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/vendor/css/fullpage.css';?>">
     
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/style.css';?>">
@@ -38,37 +40,43 @@
                 $menu_pages[] = $page;
             }
         }
+    
+        $menu_pages = array_reverse($menu_pages)
         
     ?>
         
-    
     <nav class="navbar">
-        
-        <div class="logo_wrapper">
-            <div class="logo">
-                
-                <a href="/wordpress" class="responsive-link"></a>
-            </div>
-            
-        </div>
-        
-        <div class="burger">Burger</div>
+       <div class="container">
+           <div class="row">
+               <div class="col-xs-12">
+                   <div class="logo_wrapper">
+                    <div class="logo">
 
-        <ul class="menu">
-            <?php foreach($menu_pages as $page): ?>
-            <li>
-                <a href="#<?php echo $page->post_name; ?>"><?php echo $page->post_title; ?></a>
-            </li>
-            <?php endforeach; ?>
-        </ul>
- 
+                        <a href="/wordpress" class="responsive-link"></a>
+                    </div>
+
+                </div>
+
+                <div class="burger">Burger</div>
+
+                <ul class="menu">
+                    <?php foreach($menu_pages as $page): ?>
+                    <li>
+                        <a href="#<?php echo $page->post_name; ?>" class="nav-<?php echo $page->post_name; ?>"><?php echo $page->post_title; ?></a>
+                    </li>
+                    <?php endforeach; ?>
+                </ul>
+                </div>
+            
+            </div>
+        </div>
     </nav>
     
     <div class="navbar_mobile">
         <ul class="menu">
             <?php foreach($menu_pages as $page): ?>
             <li>
-                <a href="#<?php echo $page->post_name; ?>"><?php echo $page->post_title; ?></a>
+                <a href="#<?php echo $page->post_name; ?>" class="nav-<?php echo $page->post_name; ?>"><?php echo $page->post_title; ?></a>
             </li>
             <?php endforeach; ?>
         </ul>

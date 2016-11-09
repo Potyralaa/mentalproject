@@ -71,11 +71,7 @@
                 pointer-events: none;
                 opacity: 0;
                 transition: .5s;
-                
-                &.active {
-                    pointer-events: auto;
-                    opacity: 1;
-                }
+                max-height: 0;
             }
         }
         
@@ -90,7 +86,14 @@
         height: 400px;
         background: $primary-color;
         border-radius: 4px;
-        padding: 50px;
+//        padding: 50px;
+        
+        opacity: 0;
+        pointer-events: none;
+        transition: .5s;
+        height: 0;
+        max-height: 0;
+        padding: 0;
         
         .img {
             background: $secondary-color;
@@ -101,7 +104,7 @@
             border-radius: 4px;
         }
         
-        .description p{
+        .text{
             margin: 0 10px 20px 10px;
             color: white;
             font-weight: 300;
