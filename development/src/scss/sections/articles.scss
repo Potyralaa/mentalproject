@@ -1,0 +1,107 @@
+#articles {
+    padding-top: 75px;
+
+    .carousel-articles {
+
+        article {
+            max-width: 400px;
+            background: white;
+            box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1);
+            position: relative;
+            margin: 0 auto;
+
+            h2 {
+                font-size: 22px;
+                padding: 40px;
+                font-weight: 500;
+                height: 2em;
+
+                @media (max-width: $mobile_up) {
+                    padding: 20px;
+                    font-size: 18px;
+                }
+            }
+
+            h2:after {
+                content: "";
+                position: absolute;
+            }
+
+            .img {
+                background-size: cover;
+                height: 200px;
+                width: 100%;
+
+                @media (max-width: $mobile_up) {
+                    height: 150px;
+                }
+
+            }
+
+            .main {
+                padding: 40px;
+                font-weight: 300;
+                text-align: justify;
+                font-size: 18px;
+
+                @media (max-width: $mobile_up) {
+                    padding: 20px;
+                    font-size: 16px;
+                }
+
+                p {
+                    margin: 0;
+                    height: 7em;
+
+                }
+
+                a {
+                    display: block;
+                    margin: 40px 0 0 0;
+                    color: $primary-color;
+                    text-decoration: none;
+
+                    @media (max-width: $mobile_up) {
+                        margin: 20px 0 0 0;
+                    }
+
+                    img {
+                        display: inline;
+                        width: auto;
+                        transform-style: none;
+                    }
+                }
+            }
+
+            footer {
+                padding: 20px 40px;
+                background: #f9f9f9;
+
+                @media (max-width: $mobile_up) {
+                    padding: 15px 20px;
+                    font-size: 16px;
+                }
+
+                img {
+                    position: relative;
+                    top: 4px;
+                    display: inline;
+                    width: auto;
+                    transform-style: none;
+                }
+
+                img.heart {
+                    margin-left: 10px;
+                }
+
+                span {
+                    margin-left: 5px;
+                    font-size: 13px;
+                    color: #999;
+                    font-weight: 400;
+                }
+            }
+        }
+    }
+        
+}

@@ -1,149 +1,162 @@
-'use strict';
+"use strict";
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-if (!Array.prototype.includes) {
-    Array.prototype.includes = function (searchElement /*, fromIndex*/) {
-        'use strict';
-
-        if (this == null) {
-            throw new TypeError('Array.prototype.includes called on null or undefined');
-        }
-
-        var O = Object(this);
-        var len = parseInt(O.length, 10) || 0;
-        if (len === 0) {
-            return false;
-        }
-        var n = parseInt(arguments[1], 10) || 0;
-        var k;
-        if (n >= 0) {
-            k = n;
-        } else {
-            k = len + n;
-            if (k < 0) {
-                k = 0;
-            }
-        }
-        var currentElement;
-        while (k < len) {
-            currentElement = O[k];
-            if (searchElement === currentElement || searchElement !== searchElement && currentElement !== currentElement) {
-                // NaN !== NaN
-                return true;
-            }
-            k++;
-        }
-        return false;
-    };
-}
 $(document).ready(function () {
 
-    var dom = {
-        window: $(window),
-        nav: $('nav.navbar'),
-        body: $('body'),
-        footer: $('footer'),
-        fullpage: $('#fullpage')
-    };
+    Carousels.init();
 
-    var footerChecker = new HashChecker(dom.footer, ["newsletter"], dom);
-    var mobileMenu = new MobileMenu(dom.nav, dom);
-    var menuSpy = new MenuSpy(dom);
+    Smoothscroll.init();
 
-    if (dom.window.width() > 691) {
-        dom.fullpage.fullpage();
-    }
+    Nav.init();
 });
+function debounce(func, wait) {
+    var timeout;
+    return function () {
+        var context = this,
+            args = arguments;
 
-var HashChecker = function () {
-    function HashChecker(element, hashes, dom) {
-        _classCallCheck(this, HashChecker);
+        var later = function later() {
+            timeout = null;
+            func.apply(context, args);
+        };
 
-        this.element = element;
-        this.hashes = hashes;
-        this.window = dom.window;
+        clearTimeout(timeout);
+        timeout = setTimeout(later, wait);
+    };
+};
+var Carousels = {
 
-        this.init();
-    }
+    init: function init() {
 
-    _createClass(HashChecker, [{
-        key: 'init',
-        value: function init() {
-            this.update();
-            this.window.on('hashchange', this.update.bind(this));
-        }
-    }, {
-        key: 'update',
-        value: function update() {
-            var hash = location.hash.substr(1, location.hash.length - 1);
+        var $articles = $(".carousel-articles");
 
-            if (this.hashes.includes(hash)) {
-                this.element.addClass('active');
-            } else {
-                this.element.removeClass('active');
+        $articles.owlCarousel(this.articles_config);
+    },
+
+    articles_config: {
+        margin: 80,
+        loop: true,
+        autoplay: true,
+        autoplayTimeout: 6000,
+        autoplayHoverPause: true,
+        responsive: {
+            0: {
+                items: 1
+            },
+            900: {
+                items: 2
+            },
+            1600: {
+                items: 3
             }
         }
-    }]);
+    }
+};
+var Nav = {
 
-    return HashChecker;
-}();
+    init: function init() {
+        var _this = this;
 
-var MenuSpy = function () {
-    function MenuSpy(dom) {
-        _classCallCheck(this, MenuSpy);
+        var $window = $(window),
+            $navbar = $("#navbar"),
+            $home = $("#home"),
+            $main_container = $("#main_container"),
+            $mobile_sidebar = $("#mobile_sidebar"),
+            $slidebarToggler = $navbar.find('.burger-click-region').add('.sidebar_link');
 
-        this.window = dom.window;
-        this.nav = dom.nav;
+        var clickDelay = 500,
+            clickDelayTimer = null;
 
-        this.init();
+        $slidebarToggler.click(function () {
+
+            if (clickDelayTimer === null) {
+
+                var $burger = $('.burger-click-region');
+                $burger.toggleClass('active');
+                $burger.parent().toggleClass('is-open');
+                $mobile_sidebar.toggleClass("active");
+
+                if (!$burger.hasClass('active')) {
+                    $burger.addClass('closing');
+                }
+
+                clickDelayTimer = setTimeout(function () {
+                    $burger.removeClass('closing');
+                    clearTimeout(clickDelayTimer);
+                    clickDelayTimer = null;
+                }, clickDelay);
+            }
+        });
+
+        $window.on('scroll', function () {
+            _this.checkIsActive($window, $navbar, $home);
+        });
+
+        this.checkIsActive($window, $navbar, $home);
+    },
+
+    checkIsActive: function checkIsActive($window, $navbar, $home) {
+
+        if ($home.get(0)) {
+            var topDifference = void 0;
+
+            if ($window.width() < 600) {
+                topDifference = 70;
+            } else {
+                topDifference = 96;
+            }
+
+            var top = $window.scrollTop() + topDifference;
+
+            if (top > $home.height()) {
+                $navbar.addClass('sticky');
+            } else {
+                $navbar.removeClass('sticky');
+            }
+        }
     }
 
-    _createClass(MenuSpy, [{
-        key: 'init',
-        value: function init() {
-            this.window.on('hashchange', this.update.bind(this));
+};
+var Smoothscroll = {
+    init: function init() {
+
+        var $smoothlinks = $('.smoothlink');
+
+        this.scroll(window.location.hash);
+
+        $smoothlinks.click(this.scroll);
+    },
+    scroll: function scroll() {
+
+        var url = void 0;
+
+        if (typeof arguments[0] == "string") {
+            url = arguments[0];
+        } else {
+            url = $(this).prop('href');
+            if (url.indexOf("/") == 0) {
+                url = url.substr(2, url.length - 1);
+            }
         }
-    }, {
-        key: 'update',
-        value: function update() {
-            var hash = location.hash.substr(1, location.hash.length - 1);
 
-            var navElement = this.nav.find('.nav-' + hash);
+        if (url != "") {
+            var shortUrl = url.substr(url.indexOf('#') + 1, url.length - 1);
 
-            this.nav.find('.menu a').removeClass('active');
+            var windowPosition = window.pageYOffset;
+            var destination = $("[data-scrollspy=" + shortUrl + "]").offset().top;
 
-            navElement.addClass('active');
+            var topDifference = void 0;
+
+            if ($(window).width() < 600) {
+                topDifference = 69;
+            } else {
+                topDifference = 95;
+            }
+
+            $('html, body').animate({ scrollTop: destination - topDifference }, { duration: Math.abs(destination - windowPosition) / 3, queue: false, specialEasing: "easeIn" });
         }
-    }]);
 
-    return MenuSpy;
-}();
-
-var MobileMenu = function () {
-    function MobileMenu(nav, dom) {
-        _classCallCheck(this, MobileMenu);
-
-        this.burger = nav.find('.burger');
-        this.body = dom.body;
-
-        this.init();
+        setTimeout(function () {
+            history.pushState("", document.title, window.location.pathname);
+        }, 0);
     }
-
-    _createClass(MobileMenu, [{
-        key: 'init',
-        value: function init() {
-            this.burger.click(this.trigger.bind(this));
-        }
-    }, {
-        key: 'trigger',
-        value: function trigger() {
-
-            this.body.toggleClass('moved');
-        }
-    }]);
-
-    return MobileMenu;
-}();
+};

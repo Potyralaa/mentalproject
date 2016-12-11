@@ -1,0 +1,20 @@
+#team {
+    height: 1000px;
+    padding-top: 75px;
+
+    .container_team {
+        
+        h1 {
+            text-align: center;
+        }
+
+        h1:after {
+            content: "";
+            width: 120px;
+            height: 3px;
+            background: $primary-color;
+            display: block;
+            margin: 15px auto 40px auto;
+        }
+    }
+}

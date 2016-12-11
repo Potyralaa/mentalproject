@@ -5,7 +5,7 @@
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     
     <title><?php wp_title(); ?></title>
     
@@ -16,68 +16,49 @@
 	<?php endif; ?>
 
     <link rel="apple-touch-icon" href="apple-touch-icon.png">
-
-    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/vendor/css/flexbox-grid.css';?>">
+    
+    <link rel="icon" href="<?php echo get_home_url(); ?>/wp-content/uploads/2016/12/favicon.ico">
     
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/vendor/css/owl.carousel.css';?>">
     
-    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/vendor/css/fullpage.css';?>">
+    <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/vendor/css/owl.theme.default.css';?>">
+    
+    <link rel="apple-touch-icon-precomposed" sizes="57x57" href="<?php echo get_home_url(); ?>/wp-content/uploads/2016/12/apple-touch-icon-57x57.png" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="114x114" href="<?php echo get_home_url(); ?>/wp-content/uploads/2016/12/apple-touch-icon-114x114.png" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="72x72" href="<?php echo get_home_url(); ?>/wp-content/uploads/2016/12/apple-touch-icon-72x72.png" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="<?php echo get_home_url(); ?>/wp-content/uploads/2016/12/apple-touch-icon-144x144.png" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="120x120" href="<?php echo get_home_url(); ?>/wp-content/uploads/2016/12/apple-touch-icon-120x120.png" />
+    
+    <link rel="apple-touch-icon-precomposed" sizes="152x152" href="<?php echo get_home_url(); ?>/wp-content/uploads/2016/12/apple-touch-icon-152x152.png" />
+    
+    <link rel="icon" type="image/png" href="<?php echo get_home_url(); ?>/wp-content/uploads/2016/12/favicon-32x32.png" sizes="32x32" />
+    
+    <link rel="icon" type="image/png" href="<?php echo get_home_url(); ?>/wp-content/uploads/2016/12/favicon-16x16.png" sizes="16x16" />
+    
+    <meta name="application-name" content="Mental Project"/>
+    
+    <meta name="msapplication-TileColor" content="#FFFFFF" />
+    
+    <meta name="msapplication-TileImage" content="<?php echo get_home_url(); ?>/wp-content/uploads/2016/12/mstile-144x144.png" />
     
     <link rel="stylesheet" href="<?php echo get_stylesheet_directory_uri() . '/style.css';?>">
     
-    <?php wp_head(); ?>
+    <?php// wp_head(); ?>
     
 </head>
 
 <body <?php body_class(); ?>>
    
-    <?php
-        
-        $menu_pages = array();
-        
-        foreach(get_pages() as $page) {
-            if($page->post_parent == 0) {
-                $menu_pages[] = $page;
-            }
-        }
+    <?php 
     
-        $menu_pages = array_reverse($menu_pages)
-        
+    include( 'functions/normalize_menu.php');
+    
+    get_template_part( 'layout-templates/mobile_nav');
+    
+    get_template_part( 'layout-templates/nav');
+    
     ?>
-        
-    <nav class="navbar">
-       <div class="container">
-           <div class="row">
-               <div class="col-xs-12">
-                   <div class="logo_wrapper">
-                    <div class="logo">
-
-                        <a href="/wordpress" class="responsive-link"></a>
-                    </div>
-
-                </div>
-
-                <div class="burger">Burger</div>
-
-                <ul class="menu">
-                    <?php foreach($menu_pages as $page): ?>
-                    <li>
-                        <a href="#<?php echo $page->post_name; ?>" class="nav-<?php echo $page->post_name; ?>"><?php echo $page->post_title; ?></a>
-                    </li>
-                    <?php endforeach; ?>
-                </ul>
-                </div>
-            
-            </div>
-        </div>
-    </nav>
-    
-    <div class="navbar_mobile">
-        <ul class="menu">
-            <?php foreach($menu_pages as $page): ?>
-            <li>
-                <a href="#<?php echo $page->post_name; ?>" class="nav-<?php echo $page->post_name; ?>"><?php echo $page->post_title; ?></a>
-            </li>
-            <?php endforeach; ?>
-        </ul>
-    </div>

@@ -1,11 +1,27 @@
-@import 'scss/wordpress';
-@import 'scss/vars';
+/*
+    Theme Name: Mental Project
+    Author: Prism
+    Description: Mental Project website
+    Version: 1.0
+*/
+
+@import 'scss/vars/breakpoints';
+@import 'scss/vars/colors';
+@import 'scss/vars/fonts';
+
 @import 'scss/helpers';
 
-@import 'scss/nav';
+@import 'scss/modules/burger';
+@import 'scss/modules/owl-carousel';
 
-@import 'scss/style';
 
-@import 'scss/categories/header';
-@import 'scss/categories/disabilities';
-@import 'scss/categories/articles';
+@import 'scss/layout/grid';
+@import 'scss/layout/nav';
+@import 'scss/layout/article';
+@import 'scss/layout/footer';
+@import 'scss/layout/section';
+
+@import 'scss/sections/home';
+@import 'scss/sections/articles';
+@import 'scss/sections/about-project';
+@import 'scss/sections/team';

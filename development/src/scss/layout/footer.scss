@@ -1,0 +1,16 @@
+footer.main {
+    background: rgba(0, 0, 0, .5);
+    opacity: 0;
+    bottom: -50px;
+    position: fixed;
+    width: 100%;
+    font-size: 18px;
+    text-align: center;
+    transition: .5s ease;
+    color: white;
+}
+
+footer.main.active {
+    opacity: 1;
+    bottom: 0;
+}

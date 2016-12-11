@@ -1,0 +1,39 @@
+#__bs_notify__ {
+    display: none!important;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    background-color: #f1f1f1;
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    min-height: 100%;
+    position: relative;
+    right: 0;
+    font-family: $main-font, sans-serif;
+    transition: .5s;
+    height: 100%;
+    margin: 0;
+}
+
+.container {
+    width: 100%;
+    max-width: 1600px;
+    margin: 0 auto;
+    padding: 0 20px;
+    box-sizing: border-box;
+    
+    @media (max-width: 1599px) {
+        max-width: 1200px;
+    }
+    
+    @media (max-width: 1199px) {
+        max-width: 900px;
+    }
+}

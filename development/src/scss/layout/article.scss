@@ -1,0 +1,40 @@
+.container-article {
+    padding-top: 300px;
+    
+    @media (max-width: $tablet_up) {
+        padding-top: 200px;
+    }
+    
+    @media (max-width: $mobile_up) {
+        padding-top: 70px;
+    }
+    
+    article {
+        
+        background: white;
+        border-radius: 4px;
+        box-shadow: 2px 2px  10px 0 rgba(0, 0, 0, .1);
+        
+        h1.entry-title {
+            font-weight: 400;
+            
+            padding:40px 20px 0 20px;
+        }
+        
+        .post-thumbnail {
+            img {
+                width: 100%;
+                height: auto;
+            }
+        }
+        
+        .entry-content {
+            padding: 20px;
+        }
+        
+        
+        
+        
+        
+    }
+}
