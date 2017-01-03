@@ -1,3 +1,14 @@
+.owl-theme .owl-dots .owl-dot.active span, .owl-theme .owl-dots .owl-dot:hover span {
+    background: $light-gray;
+}
+
+.owl-theme .owl-dots .owl-dot span {
+    background: transparent;
+    border:1px solid $light-gray;
+    transition: .3s;
+}
+
 .owl-theme .owl-dots .owl-dot:only-child {
     display: none;
 }
+

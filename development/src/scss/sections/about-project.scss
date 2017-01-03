@@ -1,22 +1,9 @@
 #about-project {
-    padding-top: 75px;
+    padding-top: 80px;
     
     .container_about_project {
 
         margin: 0 auto;
-        
-        h1 {
-            text-align: center;
-        }
-
-        h1:after {
-            content: "";
-            width: 120px;
-            height: 3px;
-            background: $primary-color;
-            display: block;
-            margin: 15px auto 0 auto;
-        }
 
         .col-text  {
             width: 50%;
@@ -30,11 +17,11 @@
                 text-align: justify;
                 font-size: 24px;
                 font-weight: 300;
+                color: $light-gray;
                 
                 @media (max-width: $mobile_up) {
                     font-size: 20px;
                 }
-                
             }
 
             .button {
@@ -55,11 +42,10 @@
             content: "";
             width: 120px;
             height: 3px;
-            background: $primary-color;
+            background: $accent;
             display: block;
             margin: 15px auto 0 auto;
         }
-        
         
         .objectives  {
             display: flex;
@@ -79,10 +65,11 @@
                 }
                 
                 .icon {
+                    fill: $accent;
                     display: block;
                     height: 100px;
                     width: 100px;
-                    margin: 80px auto 40px auto;
+                    margin: 20px auto 40px auto;
                     
                     @media (max-width: $mobile_up) {
                         height: 60px;
@@ -96,13 +83,13 @@
                     text-align: center;
                     font-size: 24px;
                     font-weight: 300;
+                    color: $light-gray;
                     
                     @media (max-width: $mobile_up) {
                         font-size: 20px;
                     }
                 }
             }
-             
         }
     }
 }

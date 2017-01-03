@@ -1,0 +1,100 @@
+.container_archives {
+    padding-top: 150px;
+    padding-bottom: 150px;
+    max-width: 1200px;
+    width: 100%;
+    
+    @media (max-width: $mobile_up) {
+        padding-top: 70px;
+    }
+    
+    section {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        
+        @media (max-width: $laptop_up) {
+             justify-content: center;
+        }
+        
+        article {
+            width: 47.5%;
+            
+            @media (max-width: $laptop_up) {
+                 width: 100%;
+            }
+            
+            h2 {
+                a {
+                    font-size: 28px;
+                    color: $dark-gray;
+                    text-decoration: none;
+                    font-weight: 400;
+                }
+            }
+            
+            .post-thumbnail {
+                img {
+                    width: 100%;
+                    height: auto;
+                }
+            }
+            
+            .cat-links {
+                a {
+                    color: $mid-gray;
+                }
+            }
+            
+            .comments-link {
+                a {
+                    color: $dark-gray;
+                    font-weight: 500;
+                    
+                    .screen-reader-text {
+                        color: $mid-gray;
+                        font-weight: 400;
+
+                    }
+                }  
+            }
+            
+            .posted-on,
+            .cat-links,
+            .comments-link {
+                margin: 5px 0;
+                display: block;
+                
+                time {
+                    color: $dark-gray;
+                    
+                    &.updated {
+                        display: none;
+                    }
+                }
+                
+                .screen-reader-text {
+                    font-weight: 500;
+                    color: $dark-gray;
+                    &:after {
+                        content: ": ";
+                        display: inline;
+                        position: relative;
+                        left: -3px;
+                    }
+                }
+                
+                .screen-reader-text:last-child {
+                    &:after {
+                        content: ": ";
+                        display: none;
+                    }
+                }
+                
+                a {
+                    text-decoration: none;
+                }
+            }
+        }
+    }
+}

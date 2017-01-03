@@ -21,7 +21,7 @@
                 height: 40px;
             }
 
-            img {
+            svg {
                 z-index: 2;
                 height: 66px;
 
@@ -36,7 +36,7 @@
                 padding: 23px 0;
                 vertical-align: top;
                 margin-left: 30px;
-                color: $primary-color;
+                color: $accent;
                 font-weight: 500;
                 font-size: 20px;
                 text-transform: uppercase;
@@ -65,15 +65,11 @@
 
                 a {
                     display: inline-block;
-                    color: $text-dark;
+                    color: $dark-gray;
                     transition: .5s;
                     text-transform: uppercase;
                     font-weight: 400;
                     font-size: 20px;
-
-                    &.active {
-                        color: #000;
-                    }
                 }
 
                 &:first-child {
@@ -97,18 +93,18 @@
             
             padding: 15px;
 
-//            .logo {
-//                height: 50px;
-//                margin: 10px 0;
-//
-//                img {
-//                    height: 50px;
-//                }
-//                
-//                .title {
-//                    padding: 16px 0;
-//                }
-//            }
+            .logo {
+                height: 50px;
+                margin: 10px 0;
+
+                svg {
+                    height: 50px;
+                }
+                
+                .title {
+                    padding: 16px 0;
+                }
+            }
 //            
 //            .menu {
 //                margin: 18px 0;
@@ -126,9 +122,9 @@
 
 #mobile_sidebar {
     box-sizing: border-box;
-    z-index: 2;
+    z-index: 1000;
     box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0);
-    background: $text-dark;
+    background: $dark-gray;
     transition: .3s ease;
     
     position: fixed;
@@ -159,13 +155,13 @@
             text-align: center;
             
             &:after  {
-                content: "#";
-                color: $primary-color;
-                margin: 20px auto;
-                width: 30%;
+                content: "";
+                width: 75px;
+                height: 2px;
+                background: $accent;
                 display: block;
-                font-size: 30px;
-                font-weight: 100;
+                margin: 25px auto 25px auto;
+                border-radius: 5px;
             }
             
             &:last-child::after {
@@ -183,7 +179,7 @@
                 
                 &.active,
                 &:focus {
-                    color: $primary-color;
+                    color: $accent;
                 }
             }
         }

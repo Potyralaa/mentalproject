@@ -34,10 +34,10 @@ const Smoothscroll = {
             let topDifference;
             
             if($(window).width() < 600) {
-                topDifference = 69;
+                topDifference = 20;
             }
             else {
-               topDifference = 95;
+               topDifference = 40;
             }
             
             $('html, body').animate(

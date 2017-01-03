@@ -1,5 +1,8 @@
 .container-article {
-    padding-top: 300px;
+    padding-top: 100px;
+    padding-bottom: 50px;
+    max-width: 840px;
+    width: 100%;
     
     @media (max-width: $tablet_up) {
         padding-top: 200px;
@@ -10,31 +13,63 @@
     }
     
     article {
-        
-        background: white;
         border-radius: 4px;
-        box-shadow: 2px 2px  10px 0 rgba(0, 0, 0, .1);
         
         h1.entry-title {
-            font-weight: 400;
-            
             padding:40px 20px 0 20px;
         }
         
-        .post-thumbnail {
-            img {
-                width: 100%;
-                height: auto;
+        .entry-content,
+        .entry-footer {
+            font-size: 24px;
+            color: $light-gray;
+        }
+        
+        img {
+            width: 100%;
+            height: auto
+        }
+        
+        .entry-footer {
+            a {
+                color: $accent;
             }
         }
+    }
+}
+
+.all_categories {
+    padding-top: 35px;
+    
+    .categories_wrapper {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-between;
         
-        .entry-content {
-            padding: 20px;
+        .category {
+            width: 350px;
+            display: flex;
+            align-items: center;
+            margin-bottom: 30px;
+            
+            @media (max-width: $mobile_up) {
+                width: 100%;
+            }
+
+            .thumbnail {
+                background-position: center;
+                background-size: cover;
+                height: 100px;
+                width: 100px;
+                border-radius: 100px;
+            }
+
+            .hyperlink {
+                margin-left: 40px;
+                font-size: 24px;
+                color: $mid-gray;
+                text-decoration: none;
+            }
         }
-        
-        
-        
-        
-        
     }
 }

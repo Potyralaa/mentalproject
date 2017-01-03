@@ -16,20 +16,32 @@
  * @since Twenty Sixteen 1.0
  */
 
-get_header(); ?>
+get_header();
 
-	<div id="primary" class="content-area">
-		<main id="main" class="site-main" role="main">
+include( 'functions/normalize_menu.php');
+    
+get_template_part( 'layout-templates/mobile_nav');
 
+get_template_part( 'layout-templates/nav');
+
+
+?>
+
+</main><!-- .site-main -->
+
+		<main id="main" class="container container_archives" >
+
+        
 		<?php if ( have_posts() ) : ?>
 
 			<header class="page-header">
 				<?php
-					the_archive_title( '<h1 class="page-title">', '</h1>' );
+					the_archive_title( '<h1 class="entry-title">', '</h1>' );
 					the_archive_description( '<div class="taxonomy-description">', '</div>' );
 				?>
 			</header><!-- .page-header -->
-
+            
+            <section>
 			<?php
 			// Start the Loop.
 			while ( have_posts() ) : the_post();
@@ -39,7 +51,7 @@ get_header(); ?>
 				 * If you want to override this in a child theme, then include a file
 				 * called content-___.php (where ___ is the Post Format name) and that will be used instead.
 				 */
-				get_template_part( 'template-parts/content', get_post_format() );
+				get_template_part( 'template-parts/content-archive', get_post_format() );
 
 			// End the loop.
 			endwhile;
@@ -53,13 +65,12 @@ get_header(); ?>
 
 		// If no content, include the "No posts found" template.
 		else :
-			get_template_part( 'template-parts/content', 'none' );
+			get_template_part( 'template-parts/content-archive', 'none' );
 
 		endif;
 		?>
+            </section>
 
 		</main><!-- .site-main -->
-	</div><!-- .content-area -->
 
-<?php get_sidebar(); ?>
 <?php get_footer(); ?>

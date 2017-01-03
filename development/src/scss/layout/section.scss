@@ -1,8 +1,10 @@
 h1.section_title,
-h1.entry-title{
+h1.entry-title,
+h2.section_title,
+h2.entry-title{
     margin: 0 auto;
-    color: $text-dark;
-    font-size: 40px;
+    color: $dark-gray;
+    font-size: 42px;
     font-weight: 500;
     text-align: center;
     
@@ -12,11 +14,13 @@ h1.entry-title{
 }
 
 h1.section_title:after,
-h1.entry-title:after{
+h1.entry-title:after,
+h2.section_title:after,
+h2.entry-title:after{
     content: "";
-    width: 120px;
+    width: 80px;
     height: 3px;
-    background: $primary-color;
+    background: $accent;
     display: block;
     margin: 15px auto 40px auto;
     

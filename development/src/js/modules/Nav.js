@@ -5,23 +5,38 @@ const Nav = {
             $window = $(window),
             $navbar = $("#navbar"),
             $home = $("#home"),
+            $overlay = $("#black_overlay"),
 
             $main_container = $("#main_container"),
             $mobile_sidebar = $("#mobile_sidebar"),
               
-            $slidebarToggler = $navbar.find('.burger-click-region').add('.sidebar_link');
+            $burger = $('.burger-click-region'),
+            $sidebarToggler = $('.burger-click-region').add('.sidebar_link');
+        
+        
         
         var clickDelay = 500,
             clickDelayTimer = null;
-
-        $slidebarToggler.click(function () {
-
+        
+        $overlay.click(function() {
+            toggleSidebar();
+        });
+        
+        $sidebarToggler.click(toggleSidebar);
+        
+        $window.on('scroll', () => {
+            this.checkIsActive($window, $navbar, $home, $burger);
+        });
+        
+        this.checkIsActive($window, $navbar, $home, $burger);
+        
+        function toggleSidebar() {
             if (clickDelayTimer === null) {
 
-                var $burger = $('.burger-click-region');
                 $burger.toggleClass('active');
                 $burger.parent().toggleClass('is-open');
                 $mobile_sidebar.toggleClass("active");
+                $overlay.toggleClass('active');
 
                 if (!$burger.hasClass('active')) {
                     $burger.addClass('closing');
@@ -33,26 +48,20 @@ const Nav = {
                     clickDelayTimer = null;
                 }, clickDelay);
             }
-        });
-
-        $window.on('scroll', () => {
-            this.checkIsActive($window, $navbar, $home);
-        });
-        
-        this.checkIsActive($window, $navbar, $home);
+        }
     },
     
 
-    checkIsActive: function ($window, $navbar, $home) {
+    checkIsActive: function ($window, $navbar, $home, $burger) {
         
         if($home.get(0)) {
             let topDifference;
         
             if($window.width() < 600) {
-                topDifference = 70;
+                topDifference = 21;
             }
             else {
-               topDifference = 96;
+               topDifference = 41;
             }
 
             const top = $window.scrollTop() + topDifference;
@@ -63,8 +72,9 @@ const Nav = {
                 $navbar.removeClass('sticky');
             }
         }
-        
-        
+        else if(location.pathname != "/") {
+            $navbar.addClass('sticky');
+        }
 
     },
 

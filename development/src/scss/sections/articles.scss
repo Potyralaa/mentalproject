@@ -1,20 +1,28 @@
 #articles {
-    padding-top: 75px;
+    padding-top: 80px;
 
     .carousel-articles {
 
         article {
+//            height: 660px;
+            
             max-width: 400px;
             background: white;
-            box-shadow: 0 0 5px 0 rgba(0, 0, 0, .1);
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
             position: relative;
             margin: 0 auto;
+            border-radius: 4px;
+            margin-bottom: 15px;
+            overflow: hidden;
 
-            h2 {
+            h3 {
+                width: 250px;
                 font-size: 22px;
-                padding: 40px;
+                padding: 20px 40px;
+                margin: 0;
                 font-weight: 500;
-                height: 2em;
+                height: 2.5em;
+                color: $dark-gray;
 
                 @media (max-width: $mobile_up) {
                     padding: 20px;
@@ -22,20 +30,35 @@
                 }
             }
 
-            h2:after {
+            h3:after {
                 content: "";
                 position: absolute;
             }
 
-            .img {
-                background-size: cover;
-                height: 200px;
-                width: 100%;
+            .img_wrapper {
+                
+                .img {
+                    background-size: cover;
+                    background-position: center;
+                    filter: brightness(0.9);
+                    height: 270px;
+                    width: 100%;
 
-                @media (max-width: $mobile_up) {
-                    height: 150px;
+                    @media (max-width: $mobile_up) {
+                        height: 150px;
+                    }
                 }
-
+                
+                &:before {
+                    content: "";
+                    display: inline-block;
+                    width: 20px;
+                    height: 20px;
+                    background: $white;
+                    transform: translate(50px, -10px) rotate(45deg);
+                    z-index: 2;
+                    position: absolute;
+                }
             }
 
             .main {
@@ -51,14 +74,14 @@
 
                 p {
                     margin: 0;
-                    height: 7em;
-
+                    height: 6em;
+                    color: $light-gray;
                 }
 
                 a {
                     display: block;
                     margin: 40px 0 0 0;
-                    color: $primary-color;
+                    color: $accent;
                     text-decoration: none;
 
                     @media (max-width: $mobile_up) {
@@ -89,19 +112,31 @@
                     width: auto;
                     transform-style: none;
                 }
-
-                img.heart {
-                    margin-left: 10px;
-                }
-
+                
                 span {
                     margin-left: 5px;
-                    font-size: 13px;
-                    color: #999;
+                    font-size: 12px;
+                    color: $light-gray;
                     font-weight: 400;
                 }
+                
+                svg {
+                    fill: $light-gray;
+                    width: 18px; 
+                    height: 18px;
+                    position: relative;
+                    top: 4px;
+                }
+                
+                .share_area {
+                    margin-left: 20px;
+                    display: inline-block;
+                
+                    &:hover {
+                        cursor: pointer;
+                    }
+                }  
             }
         }
-    }
-        
+    }    
 }

@@ -1,0 +1,97 @@
+#share_modal {
+    padding: 20px 40px;
+    opacity: 0;
+    pointer-events: none;
+    transition: 0.3s;
+    z-index: 10000;
+    max-width: 450px;
+    width: 100%;
+    background: white;
+    box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+    transform: translateY(-50px);
+    cursor: auto;
+    
+    > svg {
+        fill: $dark-gray;
+        position: absolute;
+        width: 24px;
+        height: 24px;
+        right: 20px;
+        
+        &:hover {
+            cursor: pointer;
+        }
+    }
+    
+    #share_input {
+        margin-bottom: 20px;
+        border-radius: 50px;
+        border: 2px solid $accent;
+        padding: 8px 20px;
+        line-height: 18px;
+        float: left;
+        overflow: hidden;
+        color: $dark-gray;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    
+    #share_copy {
+        float: left;
+        background: $accent;
+        position: absolute;
+        right: 0;
+        z-index: 1;
+    }
+    
+    button:focus,
+    input:focus {
+        outline: none;
+    }
+    
+    .share_modal__field {
+        position: relative;
+        box-sizing: border-box;
+        
+        h4 {
+            font-size: 20px;
+            margin: 0 0 20px 0;
+            font-weight: 400;
+            color: $dark-gray;
+        }
+        
+        button {
+            font-size: 20px;
+            padding: 8px 20px;
+            letter-spacing: 1px;
+            font-weight: 300;
+            border-radius: 50px;
+            border: none;
+            color: white;    
+            float: left;
+        }
+        
+        button:hover {
+            cursor: pointer;
+        }
+    }
+    
+    .fb-btn {
+        background: #3B5998
+    }
+    
+    .twitter-btn {
+        background: #00ACED;
+        margin-left: 20px;
+    }
+    
+    input {
+        font-size: 18px;
+    }
+}
+
+#share_modal.open {
+    transform: translateY(0);
+    opacity: 1;
+    pointer-events: all;
+}

@@ -1,3 +1,8 @@
+.sticky + .burger-menu,
+#mobile_sidebar.active ~ .burger-menu {
+    position: fixed;
+}
+
 .burger-menu {
     display: none;
     position: absolute;
@@ -5,32 +10,11 @@
     top: 1px;
     text-transform: uppercase;
     padding: 20px 0;
-    
-    &.is-open {
-        position: fixed;
-    }
-    
-    &::after {
-        position: fixed;
-        top: 0;
-        content: "";
-        display: block;
-        height: 71px;
-        background: $text-dark;
-        transition: .3s ease;
-        z-index: 0;
-        transform: translateX(0);
-         width: 256px;
-    }
-    
-    &.is-open::after {
-        transform: translateX(-256px);
-    }
+    z-index: 1001;
     
     @media (max-width: $mobile_up) {
         display: block;
     }
-
 }
 
 .burger-click-region {
@@ -50,7 +34,7 @@ $menu-animation-timing:   ease;
     display: block;
     position: absolute;
     width: 30px;
-    border-top: 4px solid $primary-color;
+    border-top: 4px solid $accent;
     transform-origin: 50% 50%;
     transition: transform $menu-animation-duration $menu-animation-timing;
 

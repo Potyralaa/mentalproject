@@ -9,9 +9,9 @@ const Carousels = {
     
     articles_config: {
         margin:80,
-        loop: true,
+        loop: false,
         autoplay:true,
-        autoplayTimeout:6000,
+        autoplayTimeout:5000,
         autoplayHoverPause:true,
         responsive:{
             0:{

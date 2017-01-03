@@ -1,9 +1,12 @@
 $(document).ready(function () {
 
-    Carousels.init();
-    
-    Smoothscroll.init();
+    if(location.pathname == "/" || location.pathname == "/wordpress/") {
+        Carousels.init();
+        Smoothscroll.init();
+    }
     
     Nav.init();
+    
+    Share.init();
     
 });

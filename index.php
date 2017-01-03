@@ -1,6 +1,12 @@
 <?php
     get_header();
 
+    include( 'functions/normalize_menu.php');
+    
+    get_template_part( 'layout-templates/mobile_nav');
+    
+    get_template_part( 'layout-templates/nav');
+
     get_template_part( 'onepage-templates/home');
 ?>
     

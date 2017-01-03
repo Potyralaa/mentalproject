@@ -1,20 +1,51 @@
 #team {
-    height: 1000px;
-    padding-top: 75px;
+    padding: 80px 0;
 
     .container_team {
-        
-        h1 {
-            text-align: center;
-        }
-
-        h1:after {
-            content: "";
-            width: 120px;
-            height: 3px;
-            background: $primary-color;
-            display: block;
-            margin: 15px auto 40px auto;
+        .faces {
+            
+            display: flex;
+            justify-content: justify;
+            width: 100%;
+            flex-wrap: wrap;
+            
+            .face {
+                width: 25%;
+                margin-bottom: 50px;
+                text-align: center;
+                
+                .thumbnail {
+                    background-position: center;
+                    background-size: cover;
+                    margin: 0 auto;
+                    background: white;
+                    width: 216px;
+                    height: 216px;
+                    border-radius: 200px;
+                }
+                
+                h3 {
+                    font-weight: 500;
+                    color: $mid-gray;
+                    font-size: 30px;
+                    margin: 20px 0;
+                }
+                
+                p {
+                    color: $light-gray;
+                    font-size: 18px;
+                    text-transform: uppercase;
+                }
+                
+                @media (max-width: $laptop_up) {
+                    width: 50%;
+                }
+                
+                @media (max-width: $mobile_up) {
+                    width: 100%;
+                }
+                
+            }
         }
     }
 }

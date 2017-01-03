@@ -6,14 +6,6 @@
     height: 100%;
 }
 
-.button {
-    display: inline-block;
-    border: 3px solid $primary-color;
-    font-size: 20px;
-    padding: 10px 25px;
-    color: $primary-color;
-    text-decoration: none;
-    transition: .5s;
-    border-radius: 100px;
-    text-transform: uppercase;
+.clearfix {
+    clear: both;
 }

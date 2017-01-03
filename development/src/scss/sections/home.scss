@@ -1,9 +1,12 @@
 #home {
     min-height: 100%;
+    background-size: cover;
+    background-position: center;
     
     .container_home {
         display: flex;
         flex-wrap: nowrap;
+        align-items: center;
 
         padding-top: 300px;
         
@@ -17,10 +20,12 @@
         }
 
         .col-video {
-            width: 45%;
+            width: 46.5%;
+            margin-left: 3.5%;
             margin-right: 40px;
-            background: $text-dark;
             height: 400px;
+            box-shadow: 0 2px 4px 0 rgba(0, 0, 0, .1);
+            border-radius: 4px;
             overflow: hidden;
             
             @media (max-width: $mobile_up) {
@@ -35,7 +40,8 @@
         }
 
         .col-text  {
-            width: 45%;
+            width: 46.5%;
+            margin-right: 3.5%;
             margin-left: 40px;
             
             h1.section_title {
@@ -49,6 +55,7 @@
             p {
                 font-size: 24px;
                 font-weight: 300;
+                color: $mid-gray;
                 
                 @media (max-width: $mobile_up) {
                     font-size: 20px;
@@ -59,6 +66,19 @@
             .button {
                 margin-top: 25px;
                 padding: 20px 75px;
+                display: inline-block;
+                border: 3px solid $accent;
+                font-size: 20px;
+                color: $accent;
+                text-decoration: none;
+                transition: .5s;
+                border-radius: 100px;
+                text-transform: uppercase;
+                
+                &:hover {
+                    background: $accent;
+                    color: white;
+                }
                 
                 @media (max-width: $mobile_up) {
                     padding: 10px 25px;
@@ -69,8 +89,6 @@
                     margin-bottom: 25px;
                 }
             }
-            
-            
         }
 
         @media (max-width: $tablet_up) {
