@@ -4,6 +4,8 @@
 	
 	<meta charset="<?php bloginfo( 'charset' ); ?>">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="theme-color" content="#33BB9B">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0"/>
     
